@@ -6,3 +6,4 @@ class Solution:
             if n in my_dict:
                 return [my_dict[n], i]
             my_dict[num] = i
+

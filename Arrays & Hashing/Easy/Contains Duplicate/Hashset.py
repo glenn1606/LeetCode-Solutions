@@ -14,7 +14,7 @@ print(s.hasDuplicates(nums))
 
 """
 seen = set()  # Khởi tạo set rỗng (Lưu ý: KHÔNG dùng {} vì đó là dict rỗng)
-seen = set(nums)  # Chuyển một list thành set (loại bỏ phần tử trùng lặp ngay lập tức)
+seen = set(nums)  # Chuyển một list thành set (loại bỏ phần tử trùng lặp ngay lập tức, không cộng vào value của key)
 seen.add(val)  # Thêm phần tử val vào set - Độ phức tạp O(1)
 if val in seen:  # Kiểm tra val có trong set hay không - Độ phức tạp O(1)
 if val not in seen:  # Kiểm tra val KHÔNG có trong set - Độ phức tạp O(1)
