@@ -7,14 +7,37 @@ vector<char> col, d1, d2;
 
 bool dfs(int idx) {
     if (idx == empty_rows.size()) return true;
+    int min_valid = n + 1;
+    int best_row_idx = idx;
+
+    for (int i = idx; i < empty_rows.size(); i++) {
+        int r = empty_rows[i];
+        int valid_count = 0;
+        
+        for (int c : empty_cols) {
+            if (!col[c] && !d1[r + c] && !d2[r - c + n]) {
+                valid_count++;
+            }
+        }
+        if (valid_count < min_valid) {
+            min_valid = valid_count;
+            best_row_idx = i;
+        }
+        if (min_valid == 0) return false; 
+    }
+    swap(empty_rows[idx], empty_rows[best_row_idx]);
     int r = empty_rows[idx];
+    
     for (int c : empty_cols) {
         if (col[c] || d1[r + c] || d2[r - c + n]) continue;
         col[c] = d1[r + c] = d2[r - c + n] = 1;
-        a[r] = c;
+        a[r] = c;        
         if (dfs(idx + 1)) return true;
         col[c] = d1[r + c] = d2[r - c + n] = 0;
     }
+
+    swap(empty_rows[idx], empty_rows[best_row_idx]);
+    
     return false;
 }
 
